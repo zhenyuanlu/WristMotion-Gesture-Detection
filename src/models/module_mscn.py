@@ -1,7 +1,7 @@
 """
 module_module_mscn.py
 
-This module contains the implementation of the Multiscale Convolutional Network (MSCN) architecture.
+This module contains the implementation of the Convolutional Network architecture.
 It provides the MSCN class.
 """
 import torch

@@ -1,7 +1,7 @@
 ## Transformer Encoder with Temporal Convolutions for Wrist Motion Classification
 
 ## Report
-Transformer Encoder with Temporal Convolutions for Wrist Motion Classification
+[Transformer Encoder with Temporal Convolutions for Wrist Motion Classification](https://github.com/zhenyuanlu/WristMotion-Pison/blob/main/report/PisonWrist.pdf)
 
 <br/>
 
@@ -38,7 +38,7 @@ PainAttnNet
     |   
     +---models
     |   |   main_painAttnNet.py # Main model wrapper
-    |   |   module_mscn.py* # Multiscale convolutional network
+    |   |   module_mscn.py* # Convolutional network
     |   |   module_se_resnet.py # Squeeze-and-excitation residual network
     |   |   module_transformer_encoder.py # Transformer encoder block
     |   |   __init__.py
@@ -95,5 +95,5 @@ Pison Wrist Motion Data.
 
 ## Reference
 
-[PAN Model](https://github.com/zhenyuanlu/PainAttnNet)
+[PAN Model](https://github.com/zhenyuanlu/PainAttnNet), Zhenyuan Lu, et al. "PainAttnNet: Transformer Encoder with Multiscale Deep Learning for Pain Classification Using Physiological Signals." (2023).
 
