@@ -1,0 +1,33 @@
+{
+    "name": "LOSO_900_len_5_encoder_00001_lr_2",
+    "n_gpu": 1,
+    "arch": {
+        "type": "PisonWristMotion",
+        "args": {
+        }
+    },
+    "data_loader": {
+        "args":{
+            "batch_size": 3,
+            "num_folds": 5
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args":{
+            "lr": 0.00001,
+            "weight_decay": 0.001,
+            "amsgrad": true
+        }
+    },
+    "metrics": [
+        "accuracy"
+    ],
+    "trainer": {
+        "epochs": 100,
+        "save_dir": "Z:/Pison/pison_movement/saved",
+        "save_period": 30,
+        "verbosity": 2,
+        "monitor": "min val_loss"
+    }
+}
