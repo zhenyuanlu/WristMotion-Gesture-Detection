@@ -36,9 +36,9 @@ PainAttnNet
     |   train_kfold_cv.py # Main training script
     |   __init__.py
     |   
-    +---models
-    |   |   main_painAttnNet.py # Main model wrapper
-    |   |   module_mscn.py* # Convolutional network
+    +---models* (Main modules)
+    |   |   main_PAN.py # Main model wrapper
+    |   |   module_mscn.py # Convolutional network
     |   |   module_se_resnet.py # Squeeze-and-excitation residual network
     |   |   module_transformer_encoder.py # Transformer encoder block
     |   |   __init__.py
@@ -55,7 +55,21 @@ PainAttnNet
     |   |   utils.py # Other utility functions
     |   |   __init__.py
 
+
 ```            
+## Main Modules
+
+### Convolutional Network
+`module_mscn.py` contains the convolutional network. The network consists of convolutional layers to extract input features. 
+
+### Squeeze-and-excitation residual network
+`module_se_resnet.py` Squeeze-and-Excitation Residual Network (SEResNet) to learn the interdependencies among the extracted features to enhance the representation capability of the features. SEResNet consist of two main components: a squeeze operation, which reduces the number of channels in the feature maps by taking their spatial average, and an excitation operation, which scales the channel-wise feature maps using a weighted sum of the squeezed features. This allows the network to selectively weight the importance of different channels and adaptively recalibrate the feature maps.
+
+### Transformer encoder block
+`module_transformer_encoder.py` to capture the temporal representations of the extracted features, we use a multi-head attention mechanism in conjunction with a temporal (causal) convolutional network. The multi-head attention mechanism allows the network to attend to different parts of the input sequence simultaneously, and the temporal convolution network effectively captures the dependencies between the input and output over time. The mechanism behind the multi-head attention rests on the idea of scaling the dot product of the query and key vectors by the square root of their dimensionality, followed by a weighted sum of the values using the scaled dot products as weights. This mechanism allows the network to attend to different parts of the input sequence in a parallel fashion. On the other hand, the temporal convolution network uses an auto-regressive operation to effectively capture the dependencies between the sequence over time, while also allowing the end-to-end network training.
+
+### Main model wrapper
+`main_PAN.py` is to wrap the above modules into a single model. The model consists of a convolutional network, a squeeze-and-excitation residual network, and a transformer encoder block. 
 
 
 ## Get Started
@@ -87,7 +101,7 @@ sh batch_train.sh
 python train_kfold_cv.py --fold_i {fold index}
 ```
 
-You can change settings at `main_painAttnNet.py` for tuning model structure, `config.py` for training configurations and `train_kfold_cv.py` for others.
+You can change settings at `main_PAN.py` for tuning model structure, `config.py` for training configurations and `train_kfold_cv.py` for others.
 
 
 ## Dataset
