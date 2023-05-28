@@ -60,7 +60,7 @@ def standardize_length(repetitions, target_length=None, method='truncate'):
 
     if target_length is None:
         if method == 'truncate':
-            target_length = 900 #min(lengths)
+            target_length = min(lengths)
         elif method == 'pad':
             target_length = max(lengths)
         else:

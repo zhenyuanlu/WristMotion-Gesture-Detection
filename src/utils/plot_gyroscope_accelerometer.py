@@ -20,21 +20,21 @@ df = pd.read_csv(r'Z:\Pison\pison_movement\data\pison.csv', names=column_names)
 labels = [0, 1, 2, 3, 4]
 reps = [1, 2, 3]
 
-groups = df.groupby(df.columns[-1])
-
-# Create a subplot for each group
-fig, axs = plt.subplots(len(groups), 1, sharex=True, figsize=(10, 10))
-selected = 2
-# Plot each group
-for ax, (name, group) in zip(axs, groups):
-    for subname, subgroup in group.groupby(df.columns[-2]):
-        ax.plot(subgroup[df.columns[selected]].values, label=f'Class {name}- Movement {subname}')
-    ax.legend()
-    ax.set_title(f'Feature: {column_names[selected]}')
-
-
-plt.tight_layout()
-plt.show()
+# groups = df.groupby(df.columns[-1])
+#
+# # Create a subplot for each group
+# fig, axs = plt.subplots(len(groups), 1, sharex=True, figsize=(10, 10))
+# selected = 2
+# # Plot each group
+# for ax, (name, group) in zip(axs, groups):
+#     for subname, subgroup in group.groupby(df.columns[-2]):
+#         ax.plot(subgroup[df.columns[selected]].values, label=f'Class {name}- Movement {subname}')
+#     ax.legend()
+#     ax.set_title(f'Feature: {column_names[selected]}')
+#
+#
+# plt.tight_layout()
+# plt.show()
 
 
 
@@ -68,7 +68,7 @@ from mpl_toolkits.mplot3d import Axes3D
 #
 # gyroscope  = df
 #
-# gyroscope  = gyroscope [(gyroscope ['body_movement']==0) & (gyroscope ['repetition_number'] ==1)]
+# gyroscope  = gyroscope [(gyroscope ['body_movement']==0) & (gyroscope ['repetition_number'] ==2)]
 # gyroscope  = gyroscope .iloc[:, 9:12]
 #
 # fig = plt.figure()
@@ -84,41 +84,21 @@ from mpl_toolkits.mplot3d import Axes3D
 # ani = FuncAnimation(fig, update, frames=range(0, 360, 2), interval=100)
 # plt.show()
 
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
 
-#
-# # Load your data
-# # Assuming quaternions is a numpy array of shape (n, 4)
-# # where each row is a quaternion [x, y, z, w]
-# quaternions = df
-#
-# quaternions = quaternions[(quaternions['body_movement']==0) & (quaternions['repetition_number'] ==1)]
-# quaternions = quaternions.iloc[:, 5:9]
-#
-# # Normalize your quaternions if they aren't already
-# norms = np.linalg.norm(quaternions, axis=1)
-# quaternions = quaternions / norms[:, np.newaxis]
-#
-# # Convert to scipy Rotation object
-rotations = R.from_quat(quaternions)
-#
-# # Create a 3D plot
-# fig = plt.figure()
-# ax = fig.add_subplot(111, projection='3d')
-#
-# # Plot each quaternion
-# for i in range(len(quaternions)):
-#     # Get the rotation matrix for this quaternion
-#     matrix = rotations[i].as_matrix()
-#
-#     # Plot the x, y, and z vectors after rotation
-#     ax.quiver(0, 0, 0, matrix[0, 0], matrix[1, 0], matrix[2, 0], color='r')  # x vector
-#     ax.quiver(0, 0, 0, matrix[0, 1], matrix[1, 1], matrix[2, 1], color='g')  # y vector
-#     ax.quiver(0, 0, 0, matrix[0, 2], matrix[1, 2], matrix[2, 2], color='b')  # z vector
-#
-# # Set plot limits
-# ax.set_xlim([-1, 1])
-# ax.set_ylim([-1, 1])
-# ax.set_zlim([-1, 1])
-#
-# # Show the plot
-# plt.show()
+# Assuming gyroscope and accelerometer data are pandas dataframes with columns 'x', 'y', 'z'
+gyroscope = df[(df['body_movement']==0) & (df['repetition_number'] ==2)].iloc[:, 9:12]
+accelerometer = df[(df['body_movement']==0) & (df['repetition_number'] ==2)].iloc[:, 12:15]
+
+# Plot the gyroscope data
+ax.scatter(gyroscope['gyroscope_x'], gyroscope['gyroscope_y'], gyroscope['gyroscope_z'])
+
+# Add arrows for the accelerometer data
+ax.quiver(accelerometer['acc_x'], accelerometer['acc_y'], accelerometer['acc_z'],
+          np.sin(np.pi * accelerometer['acc_x']),
+          -np.cos(np.pi * accelerometer['acc_y']),
+          np.sqrt(2.0 / 3.0) * np.cos(np.pi * accelerometer['acc_z']),
+          length=0.1, normalize=True)
+
+plt.show()

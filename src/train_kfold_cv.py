@@ -7,7 +7,7 @@ This module contains the implementation of the main training loop.
 
 import argparse
 
-from models.main_painAttnNet import PainAttnNet
+from models.main_PAN import PAN
 from parser import ConfigParser
 from trainers.main_trainer import Trainer
 from utils.utils import *
@@ -43,7 +43,7 @@ def train_kfold(config, fold_id):
     logger = config.get_logger('trainers')
 
     # Build model architecture, initialize weights, then print to console
-    model = PainAttnNet()
+    model = PAN()
 
     model.apply(weights_init_normal)
 

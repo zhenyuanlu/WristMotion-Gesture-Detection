@@ -1,5 +1,5 @@
 {
-    "name": "LOSO_900_len_5_encoder_00001_lr_2",
+    "name": "LOSO_967_len_5_head_5_encoder_00001_lr_60_epoch",
     "n_gpu": 1,
     "arch": {
         "type": "PisonWristMotion",
@@ -24,9 +24,9 @@
         "accuracy"
     ],
     "trainer": {
-        "epochs": 100,
+        "epochs": 60,
         "save_dir": "Z:/Pison/pison_movement/saved",
-        "save_period": 30,
+        "save_period": 50,
         "verbosity": 2,
         "monitor": "min val_loss"
     }

@@ -24,7 +24,7 @@ groups = df.groupby(df.columns[-1])
 
 # Create a subplot for each group
 fig, axs = plt.subplots(len(groups), 1, sharex=True, figsize=(10, 10))
-selected = 2
+selected = 10
 # Plot each group
 for ax, (name, group) in zip(axs, groups):
     for subname, subgroup in group.groupby(df.columns[-2]):
