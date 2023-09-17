@@ -1,21 +1,40 @@
 ## Transformer Encoder with Temporal Convolutions for Wrist Motion Classification
 
-## Report
-[Transformer Encoder with Temporal Convolutions for Wrist Motion Classification](https://github.com/zhenyuanlu/WristMotion-Pison/blob/main/report/PisonWrist.pdf)
+## Report [Transformer Encoder with Temporal Convolutions for Wrist Motion Classification](https://github.com/zhenyuanlu/WristMotion-Pison/blob/main/report/PisonWrist.pdf)
+
+### Models adapted from our paper [Transformer Encoder with Multiscale Deep Learning for Pain Classification Using Physiological Signals](https://arxiv.org/pdf/2303.06845.pdf) 
 
 <br/>
 
 ## Abstract
 
-
 <div style="text-align:center">
-  <img src="figures/outline_simple_2.png" width="100%" alt="TemporalAttnNet"/>
+  <img src="figures/outline_simple_2.png" width="70%" alt="Results"/>
 </div>
 
 <br>
 
-In this project, we adapt our [PAN Model](https://github.com/zhenyuanlu/PainAttnNet) on Pison's Wrist Multimodal Motion data. This model integrates multiscale convolutional networks to capture short- and long-window sequential features, a squeeze-and-excitation residual network emphasizing interdependencies among relevant features, and a transformer encoder block for optimal feature extraction and temporal dependency analysis.
+In this project, we adapt our [PainAttnNet Model](https://github.com/zhenyuanlu/PainAttnNet) on Pison's Wrist Multimodal Motion data. This model integrates multiscale convolutional networks to capture short- and long-window sequential features, a squeeze-and-excitation residual network emphasizing interdependencies among relevant features, and a transformer encoder block for optimal feature extraction and temporal dependency analysis.
 
+<br>
+
+<div style="text-align:center">
+  <img src="figures/results.png" width="100%" alt="Results"/>
+</div>
+
+<br>
+
+In our experiment, we used the PWMD for modeling. This dataset consists of 17 columns provided in the dataset. 14 of them are features we used in our model for prediction of the repetition number (wrist motion), e.g. {1, 2, 3} among body movements. The results with different settings showed in above figures. We have the best performance with the following settings: 5 encoder layers, 5 attention heads, and minimum length 967. **The performance is 100\% accuracy, 100\% macro F1, and 100\% Cohen's Kappa.**
+
+<br>
+
+<div style="text-align:center">
+  <img src="figures/quaternion.png" width="80%" alt="Quaternion"/>
+</div>
+
+<div style="text-align:center">
+  <img src="figures/raw.png" width="60%" alt="Signals"/>
+</div>
 
 ## Directory Structure
 ```python
@@ -109,5 +128,5 @@ Pison Wrist Motion Data.
 
 ## Reference
 
-[PAN Model](https://github.com/zhenyuanlu/PainAttnNet), Zhenyuan Lu, et al. "PainAttnNet: Transformer Encoder with Multiscale Deep Learning for Pain Classification Using Physiological Signals." (2023).
+[PainAttnNet Model](https://github.com/zhenyuanlu/PainAttnNet), Zhenyuan Lu, et al. "PainAttnNet: Transformer Encoder with Multiscale Deep Learning for Pain Classification Using Physiological Signals." (2023).
 
